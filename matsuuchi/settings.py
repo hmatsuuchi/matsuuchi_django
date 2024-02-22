@@ -1,3 +1,5 @@
+import os
+
 from pathlib import Path
 from environ import Env # environment variables
 
@@ -24,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'projects', # projects app
+    'profiles', # profiles app
 ]
 
 MIDDLEWARE = [
@@ -102,7 +106,11 @@ USE_TZ = True
 
 # Static files
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 # Default primary key field type
 
