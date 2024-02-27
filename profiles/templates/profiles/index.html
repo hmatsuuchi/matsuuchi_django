@@ -4,9 +4,39 @@
 <html>
 <head>
     <title>matsuuchi.com</title>
-    <link rel="stylesheet" href="{% static 'profiles/index.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/index.css' %}?ver=010">
+
+    <!-- Google Fonts - Lato, Kosugi Maru -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to matsuuchi.com</h1>
+  <section id="primary-container">
+    <div id="content-container">
+      <!-- Profile 1 - Hiroki -->
+      <a href="hiroki/" id="hiroki" class="profile-container glass">
+        <div class="icon-container">
+          <div class="icon-background"></div>
+          <div class="icon"></div>
+        </div>
+        <div class="name">Hiroki</div>
+        <div class="subtitle">programming enthusiast</div>
+      </a>
+      <!-- Profile 2 -->
+      <a href="obitan/" id="obitan" class="profile-container glass">
+        <div class="icon-container">
+          <div class="icon-background"></div>
+          <div class="icon"></div>
+        </div>
+        <div class="name">オビタン</div>
+        <div class="subtitle">おやすみクラブ会長</div>
+      </a>
+      <!-- Profile 3 -->
+      <div id="profile-3" class="profile-container glass"></div>
+      <!-- Profile 4 -->
+      <div id="profile-4" class="profile-container glass"></div>
+    </div>
+  </section>
 </body>
 </html>

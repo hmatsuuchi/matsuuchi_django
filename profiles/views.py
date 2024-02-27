@@ -9,3 +9,7 @@ class IndexView(View):
 class HirokiView(View):
     def get(self, request):
         return render(request, 'profiles/hiroki.html')
+    
+class ObitanView(View):
+    def get(self, request):
+        return render(request, 'profiles/obitan.html')
