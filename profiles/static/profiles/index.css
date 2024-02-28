@@ -1,7 +1,8 @@
 body {
     margin: 0;
 
-    background: radial-gradient(circle at center, #9BCF53, #BFEA7C);
+    /* background: radial-gradient(circle at center, #9BCF53, #BFEA7C); */
+    background: radial-gradient(circle at center, #71C9CE, #A6E3E9);
 
     font-family: 'Lato', sans-serif;
 }
@@ -17,6 +18,8 @@ a {
     width: 100vw;
     height: 100vh;
 
+    overflow-x: hidden;
+
     display: grid;
 }
 
@@ -25,6 +28,8 @@ a {
     position: relative;
 
     place-self: center;
+
+    margin: 3rem 0;
 
     display: grid;
     justify-content: center;
@@ -147,7 +152,7 @@ a#obitan.profile-container {
 /* Glass Pane */
 .glass {
     background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.2);
+    box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(.2rem);
     -webkit-backdrop-filter: blur(.2rem);
     border-radius: 1.5rem;
@@ -156,6 +161,14 @@ a#obitan.profile-container {
   }
 
 /* Paper Craft Images */
+#paper-craft-container {
+    z-index: -1;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
 .paper-craft-image {
     position: absolute;
 
@@ -166,27 +179,57 @@ a#obitan.profile-container {
 }
 
 #cloud-1 {
-    z-index: -1;
-
     position: absolute;
 
-    right: -10rem;
-    top: -13rem;
+    right: max(-10vw, -10rem);
+    top: max(-23vw, -11rem);
 
     background-image: url("cloud_1.svg");
 
-    height: 35rem;
-    width: 35rem;
+    width: min(60vw, 27rem);
+    height: min(60vw, 27rem);
+
+    animation: cloud-1-animation 100s ease-in-out infinite alternate;
+}
+
+@keyframes cloud-1-animation {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-1.2vw, 2.3vw); }
+    20% { transform: translate(-0.7vw, 1.9vw); }
+    30% { transform: translate(-2.8vw, 0.1vw); }
+    40% { transform: translate(2.7vw, -1.6vw); }
+    50% { transform: translate(0.8vw, -2.3vw); }
+    60% { transform: translate(1.4vw, -0.9vw); }
+    70% { transform: translate(2.1vw, -1.8vw); }
+    80% { transform: translate(0.3vw, 2.5vw); }
+    90% { transform: translate(-1.1vw, 0.6); }
+    100% { transform: translate(0, 0); }
 }
 
 #cloud-2 {
     position: absolute;
 
-    left: -14rem;
-    top: 20rem;
+    left: max(-14vw, -8rem);
+    top: min(46vw, 14rem);
 
     background-image: url("cloud_2.svg");
 
-    height: 25rem;
-    width: 25rem;
+    width: min(50vw, 20rem);
+    height: min(50vw, 20rem);
+
+    animation: cloud-2-animation 100s ease-in-out -5s infinite alternate;
+}
+
+@keyframes cloud-2-animation {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(2.1vw, -1.8vw); }
+    20% { transform: translate(-0.7vw, 1.9vw); }
+    30% { transform: translate(-2.8vw, 0.1vw); }
+    40% { transform: translate(1.4vw, -0.9vw); }
+    50% { transform: translate(0.8vw, -2.3vw); }
+    60% { transform: translate(2.7vw, -1.6vw); }
+    70% { transform: translate(0.3vw, 2.5vw); }
+    80% { transform: translate(-1.2vw, 2.3vw); }
+    90% { transform: translate(-1.1vw, 0.6); }
+    100% { transform: translate(0, 0); }
 }
