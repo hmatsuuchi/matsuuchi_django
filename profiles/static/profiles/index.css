@@ -11,6 +11,8 @@ a {
     font-family: 'Lato', sans-serif;
     text-decoration: none;
     color: #000;
+
+    pointer-events: none; /* Keep this until you have some content to link to from the profiles page */
 }
 
 /* Primary Container */
