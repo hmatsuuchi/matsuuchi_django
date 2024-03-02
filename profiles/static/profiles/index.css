@@ -31,7 +31,7 @@ a {
 
     place-self: center;
 
-    margin: 3rem 0;
+    margin: 1rem 0;
 
     display: grid;
     justify-content: center;
@@ -190,22 +190,6 @@ a#obitan.profile-container {
 
     width: min(60vw, 27rem);
     height: min(60vw, 27rem);
-
-    animation: cloud-1-animation 100s ease-in-out infinite alternate;
-}
-
-@keyframes cloud-1-animation {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(-1.2vw, 2.3vw); }
-    20% { transform: translate(-0.7vw, 1.9vw); }
-    30% { transform: translate(-2.8vw, 0.1vw); }
-    40% { transform: translate(2.7vw, -1.6vw); }
-    50% { transform: translate(0.8vw, -2.3vw); }
-    60% { transform: translate(1.4vw, -0.9vw); }
-    70% { transform: translate(2.1vw, -1.8vw); }
-    80% { transform: translate(0.3vw, 2.5vw); }
-    90% { transform: translate(-1.1vw, 0.6); }
-    100% { transform: translate(0, 0); }
 }
 
 #cloud-2 {
@@ -218,20 +202,4 @@ a#obitan.profile-container {
 
     width: min(50vw, 20rem);
     height: min(50vw, 20rem);
-
-    animation: cloud-2-animation 100s ease-in-out -5s infinite alternate;
-}
-
-@keyframes cloud-2-animation {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(2.1vw, -1.8vw); }
-    20% { transform: translate(-0.7vw, 1.9vw); }
-    30% { transform: translate(-2.8vw, 0.1vw); }
-    40% { transform: translate(1.4vw, -0.9vw); }
-    50% { transform: translate(0.8vw, -2.3vw); }
-    60% { transform: translate(2.7vw, -1.6vw); }
-    70% { transform: translate(0.3vw, 2.5vw); }
-    80% { transform: translate(-1.2vw, 2.3vw); }
-    90% { transform: translate(-1.1vw, 0.6); }
-    100% { transform: translate(0, 0); }
 }
