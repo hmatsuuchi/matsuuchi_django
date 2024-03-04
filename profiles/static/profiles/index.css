@@ -11,9 +11,22 @@ a {
     font-family: 'Lato', sans-serif;
     text-decoration: none;
     color: #000;
-
-    pointer-events: none; /* Keep this until you have some content to link to from the profiles page */
 }
+
+.unclickable {
+    pointer-events: none;
+}
+
+/* Glass Pane */
+.glass {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(.2rem);
+    -webkit-backdrop-filter: blur(.2rem);
+    border-radius: 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    background-clip: padding-box;
+  }
 
 /* Primary Container */
 #primary-container {
@@ -22,6 +35,8 @@ a {
 
     overflow-x: hidden;
 
+    align-content: start;
+
     display: grid;
 }
 
@@ -29,9 +44,7 @@ a {
 #content-container {
     position: relative;
 
-    place-self: center;
-
-    margin: 1rem 0;
+    margin: 3rem 0;
 
     display: grid;
     justify-content: center;
@@ -151,17 +164,6 @@ a#obitan.profile-container {
     padding-top: min(1vw, .5rem);
 }
 
-/* Glass Pane */
-.glass {
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(.2rem);
-    -webkit-backdrop-filter: blur(.2rem);
-    border-radius: 1.5rem;
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    background-clip: padding-box;
-  }
-
 /* Paper Craft Images */
 #paper-craft-container {
     z-index: -1;
@@ -202,4 +204,18 @@ a#obitan.profile-container {
 
     width: min(50vw, 20rem);
     height: min(50vw, 20rem);
+}
+
+@media (min-width: 576px) {
+    /* Primary Container */
+    #primary-container {
+        align-content: center;
+    }
+
+    /* Content Container */
+    #content-container {
+        place-self: center;
+
+        margin: 1rem 0;
+    }
 }

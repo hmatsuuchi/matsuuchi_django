@@ -4,9 +4,65 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=003">
+    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=008">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
+
+    <!-- Default viewport scale -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts - Lato, Kosugi Maru -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Hiroki</h1>
+  <!-- Background -->
+  <section id="background">
+      <div id="background-gradient"></div>
+      <div id="background-gradient-mask"></div>
+      <div id="background-shapes-container">
+        <div
+          id="circle-1"
+          class="background-glass-effect"></div>
+        <div
+          id="circle-2"
+          class="background-glass-effect"></div>
+      </div>
+  </section>
+      
+  <!-- Profile Card -->
+  <section id="profile-card">
+    <div class="primary-container glass">
+      <div class="icon-container">
+        <div class="icon-background"></div>
+        <div class="icon"></div>
+      </div>
+      <h1>Hiroki Matsuuchi</h1>
+      <h2>
+        Building web applications with the power of
+        <span class="bold-text purple-text">Django</span>, from
+        <span class="bold-text purple-text">front-end</span> to
+        <span class="bold-text purple-text">back-end</span>
+      </h2>
+    </div>
+  </section>
+
+  <!-- Project Cards -->
+  <section id="project-cards">
+    <div class="primary-container">
+      {% for project in projects %}
+      <div class="project-card glass">
+        <h3>{{ project.project_name }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+    <!-- JS -->
+  <script src="{% static 'profiles/hiroki.js' %}?ver=001"></script>
+
 </body>
 </html>
