@@ -54,9 +54,14 @@
   <section id="project-cards">
     <div class="primary-container">
       {% for project in projects %}
-      <div class="project-card glass">
-        <h3>{{ project.project_name }}</h3>
-      </div>
+      <a href='/projects/{{ project.url_stub }}' class="project-card glass">
+        <h3 class="project-name">{{ project.project_name }}</h3>
+        <h4 class="project-subtitle">{{ project.project_subtitle }}</h4>
+        <p class="project-description">{{ project.project_description }}</p>
+        <div class="divider-line"></div>
+        <div class="creation-date">Created: {{ project.creation_date|date:"Y-m-d" }}</div>
+        <div class="update-date">Last Updated: {{ project.update_date|date:"Y-m-d" }}</div>
+      </a>
       {% endfor %}
     </div>
   </section>

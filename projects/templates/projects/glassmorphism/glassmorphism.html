@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hiroki Matsuuchi</title>
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=001">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
+
+    <!-- Default viewport scale -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <!-- Background -->
+  <section id="background">
+      <div id="background-gradient"></div>
+      <div id="background-gradient-mask"></div>
+      <div id="background-shapes-container">
+        <div
+          id="circle-1"
+          class="background-glass-effect"></div>
+        <div
+          id="circle-2"
+          class="background-glass-effect"></div>
+      </div>
+  </section>
+
+    <!-- JS -->
+  <script src="{% static 'projects/glassmorphism/glassmorphism.js' %}?ver=001"></script>
+
+</body>
+</html>

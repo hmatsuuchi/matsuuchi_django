@@ -8,8 +8,8 @@ class Projects(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=1)
 
-    creation_date = models.DateField(default='2021-01-01')
-    update_date = models.DateField(default='2021-01-01')
+    creation_date = models.DateField()
+    update_date = models.DateField()
 
     url_stub = models.CharField(max_length=100)
 
