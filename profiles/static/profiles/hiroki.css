@@ -177,6 +177,12 @@ p {
     grid-column: 1 / 3;
 }
 
+.creation-date, .update-date {
+    font-size: min(.5rem + 1vw, 1rem);
+
+    white-space: nowrap;
+}
+
 .creation-date {
     grid-column: 1;
 }
@@ -184,7 +190,7 @@ p {
 .update-date {
     grid-column: 2;
 
-    justify-self: right;
+    text-align: right;
 }
 
 .divider-line {

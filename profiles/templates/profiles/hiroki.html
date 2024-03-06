@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=008">
+    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=009">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -59,8 +59,8 @@
         <h4 class="project-subtitle">{{ project.project_subtitle }}</h4>
         <p class="project-description">{{ project.project_description }}</p>
         <div class="divider-line"></div>
-        <div class="creation-date">Created: {{ project.creation_date|date:"Y-m-d" }}</div>
-        <div class="update-date">Last Updated: {{ project.update_date|date:"Y-m-d" }}</div>
+        <div class="creation-date">Created: <wbr>{{ project.creation_date|date:"Y-m-d" }}</div>
+        <div class="update-date">Last Updated: <wbr>{{ project.update_date|date:"Y-m-d" }}</div>
       </a>
       {% endfor %}
     </div>
