@@ -1,46 +1,9 @@
 body {
     margin: 0;
 
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
-h1 {
-    font-size: min(1.5rem + 5vw, 3rem);
-    font-weight: 700;
-    text-align: center;
-
-    margin: 0;
-}
-
-h2 {
-    font-size: min(1rem + 3vw, 1.5rem);
-    font-weight: 700;
-    text-align: center;
-    font-style: italic;
-
-    margin: .5rem 0;
-
-    max-width: 300px;
-}
-
-h3 {
-    font-size: min(1rem + 2vw, 2rem);
-
-    margin: 0;
-}
-
-h4 {
-    font-style: italic;
-    font-size: min(1rem + 1vw, 1.25rem);
-
-    margin: .25rem 0 0 0;
-}
-
-p {
-    margin: 1rem 0 0 0;
-}
-
-/* Glass Pane */
 .glass {
     background: rgba(255, 255, 255, 0.5);
     box-shadow: .25rem .25rem .5rem 0 rgba(0, 0, 0, 0.2);
@@ -51,144 +14,137 @@ p {
     background-clip: padding-box;
 }
 
-/* Profile Card */
-#profile-card {
-    padding: 1rem;
-
-    display: grid;
-    place-content: center;
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
-#profile-card .primary-container {
-    padding: 3rem 1rem;
+h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+pre {    
+    border-radius: .5rem;
+}
+
+.code-block {
+    margin-top: 2rem;
 
     width: calc(100vw - 4rem);
-    max-width: 500px;
-
-    display: grid;
-    justify-items: center;
-    align-content: start;
+    max-width: calc(800px - 2rem - 4px);
 }
 
-/* Profile Card - Icon Container */
-.icon-container {
+/* Back Button */
+.back-button {
     position: relative;
 
-    grid-column: 1;
-    grid-row: 1 / 3;
+    cursor: pointer;
 
-    height: 35vw;
-    width: 35vw;
-    min-height: 9rem;
-    min-width: 9rem;
-    max-height: 16rem;
-    max-width: 16rem;
+    background-color: transparent;
 
+    border: none;
 
-    filter: drop-shadow(.25rem .25rem .4rem rgba(0, 0, 0, 0.4));
-}
+    top: 1rem;
+    left: 1rem;
 
-.icon-background {
-    position: absolute;
+    padding: .5rem 1rem;
 
-    background-color: #2ebf91;
-
-    height: calc(35vw - 2rem);
-    width: calc(35vw - 2rem);
-    min-height: 7rem;
-    min-width: 7rem;
-    max-height: 14rem;
-    max-width: 14rem;
-
-    margin: 1rem;
-
-    outline: solid .25rem #fff;
-    border-radius: 50%;
-}
-
-.icon {
-    position: absolute;
-
-    background-image: url("hiroki_icon.svg");
-
-    height: calc(35vw - 1rem);
-    width: calc(35vw - 2rem);
-    min-height: 8rem;
-    min-width: 7rem;
-    max-height: 15rem;
-    max-width: 14rem;
-
-    margin: 0 1rem 1rem 1rem;
-
-    border-bottom-right-radius: 7rem;
-    border-bottom-left-radius: 7rem;
-
-    background-repeat: no-repeat;
-    background-size: auto 105%;
-    background-position: 50% 0%;
-}
-
-.bold-text {
-    font-weight: 700;
-    color: #000;
-}
-  
-.purple-text {
-    color: rgb(101,66,165);
-}
-
-/* Project Cards */
-#project-cards {    
+    border-radius: .5rem;
+    
     display: grid;
-    place-content: center;
+    grid-auto-flow: column;
+    grid-column-gap: .5rem;
+    align-items: center;
 }
 
-#project-cards .primary-container {
-    padding: 0 1rem 1rem 1rem;
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
 
-    width: calc(100vw - 2rem);
+.back-button-arrow {
+    background-image: url("arrow_20pt_stroke.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 45%;
+
+    transform: rotate(180deg);
+
+    width: 2rem;
+    height: 2rem;
+}
+
+.back-button-text {
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
+    font-style: italic;
+
+}
+
+/* Content */
+#content {
+    position: relative;
+
+    top: 1rem;
+
+    z-index: 1;
+
+    display: grid;
+    justify-content: center;
+}
+
+#content-container {
+    padding: 1rem;
+
+    width: calc(100vw - 2rem + 4px);
     max-width: 800px;
 
     display: grid;
     grid-row-gap: 1rem;
 }
 
-.project-card {
+.content-card {
     padding: 1rem;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
 }
 
-.project-name {
-    grid-column: 1 / 3;
+/* Content - Four Color Gradient Background */
+#four-color-gradient-background {
+    position: relative;
+
+    width: calc(100vw - 4rem);
+    height: calc(162vw - 4rem);
+    max-width: 500px;
+    max-height: 750px;
+
+    justify-self: center;
 }
 
-.project-subtitle {
-    grid-column: 1 / 3;
-}
+#background-gradient {
+    position: absolute;
 
-.project-description {
-    grid-column: 1 / 3;
-}
-
-.creation-date {
-    grid-column: 1;
-}
-
-.update-date {
-    grid-column: 2;
-
-    justify-self: right;
-}
-
-.divider-line {
-    grid-column: 1 / 3;
     width: 100%;
+    height: 100%;
 
-    margin: 1rem 0 .25rem 0;
+    top: 0;
+    right: 0;
 
-    border-top: solid 1px #000;
+    background: linear-gradient(90deg, #ee0979, #f5af19);
+}
+
+#background-gradient-mask {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    right: 0;
+
+    mask-image: linear-gradient(180deg, transparent, black);
+    -webkit-mask-image: linear-gradient(180deg, transparent, black);
+    background: linear-gradient(90deg, #8360c3,#2ebf91);
 }
 
 /* Background */

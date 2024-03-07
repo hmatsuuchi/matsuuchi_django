@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=009">
+    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=011">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -54,14 +54,18 @@
   <section id="project-cards">
     <div class="primary-container">
       {% for project in projects %}
-      <a href='/projects/{{ project.url_stub }}' class="project-card glass">
+      <div class="project-card glass">
         <h3 class="project-name">{{ project.project_name }}</h3>
         <h4 class="project-subtitle">{{ project.project_subtitle }}</h4>
         <p class="project-description">{{ project.project_description }}</p>
+        <button class="project-button" onClick="window.location.href='/projects/{{ project.url_stub }}'">
+          <div>read more</div>
+          <div class="button-arrow"></div>
+        </button>
         <div class="divider-line"></div>
         <div class="creation-date">Created: <wbr>{{ project.creation_date|date:"Y-m-d" }}</div>
         <div class="update-date">Last Updated: <wbr>{{ project.update_date|date:"Y-m-d" }}</div>
-      </a>
+        </div>
       {% endfor %}
     </div>
   </section>

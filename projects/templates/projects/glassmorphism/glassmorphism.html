@@ -4,13 +4,21 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=001">
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=009">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
     <!-- Default viewport scale -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Prism -->
+    <link href="{% static 'projects/glassmorphism/prism.css' %}" rel="stylesheet" />
 
 </head>
 <body>
@@ -28,8 +36,87 @@
       </div>
   </section>
 
+  <!-- Back Button -->
+  <button class="back-button" onClick="window.location.href='/hiroki/'">
+    <div class="back-button-arrow"></div>
+    <div class="back-button-text">all projects</div>
+  </button>
+
+  <!-- Content -->
+  <section id="content">
+    <div id="content-container">
+      <h1>Glassmorphism</h1>
+      <div class="content-card glass">
+        <p>This is a fun effect that's relatively easy to implement in just CSS, but you can get fancy with a bit of additional JavaScript. The look is a nice compromise between skeuomorphism, which is seen as a bit dated now, and flat design.</p>
+      </div>
+      <div class="content-card glass">
+        <h2>Creating the background</h2>
+        <p>The glass pane effect only really works if you have a background with some visual interest.
+           Solid color backgrounds will make the frosted glass effect completely invisible,
+           so it's best to add some abstract shapes or a gradient to the background.
+        </p>
+        <h3>Four color gradient background</h3>
+        <div id="four-color-gradient-background">
+          <div id="background-gradient"></div>
+          <div id="background-gradient-mask"></div>
+        </div>
+        <div class="code-block">
+          <pre><code class="language-html">
+&lt;div id="four-color-gradient-background"&gt;
+  &lt;div id="background-gradient"&gt;&lt;/div&gt;
+  &lt;div id="background-gradient-mask"&gt;&lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+        <div class="code-block">
+          <pre><code class="language-css">
+#four-color-gradient-background {
+  position: relative;
+
+  width: calc(100vw - 4rem);
+  height: calc(162vw - 4rem);
+  max-width: 500px;
+  max-height: 750px;
+
+  justify-self: center;
+}
+
+#background-gradient {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  right: 0;
+
+  background: linear-gradient(90deg, #ee0979, #f5af19);
+}
+
+#background-gradient-mask {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  right: 0;
+
+  mask-image: linear-gradient(180deg, transparent, black);
+  -webkit-mask-image: linear-gradient(180deg, transparent, black);
+  background: linear-gradient(90deg, #8360c3,#2ebf91);
+}
+            </code></pre>
+          </div>
+      </div>
+    </div>
+  </section>
+
     <!-- JS -->
   <script src="{% static 'projects/glassmorphism/glassmorphism.js' %}?ver=001"></script>
+
+  <!-- Prism -->
+  <script src="{% static 'projects/glassmorphism/prism.js' %}"></script>
 
 </body>
 </html>
