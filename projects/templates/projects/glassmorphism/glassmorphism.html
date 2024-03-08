@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=009">
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=013">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Prism -->
-    <link href="{% static 'projects/glassmorphism/prism.css' %}" rel="stylesheet" />
+    <link href="{% static 'projects/glassmorphism/prism.css' %}?ver=001" rel="stylesheet" />
 
 </head>
 <body>
@@ -45,9 +45,19 @@
   <!-- Content -->
   <section id="content">
     <div id="content-container">
-      <h1>Glassmorphism</h1>
+      <div class="project-title-container">
+        <h1>Glassmorphism</h1>
+        <div class="creation-date">Created: <wbr>{{ project.creation_date|date:"Y-m-d" }}</div>
+        <div class="update-date">Last Updated: <wbr>{{ project.update_date|date:"Y-m-d" }}</div>
+      </div>
       <div class="content-card glass">
-        <p>This is a fun effect that's relatively easy to implement in just CSS, but you can get fancy with a bit of additional JavaScript. The look is a nice compromise between skeuomorphism, which is seen as a bit dated now, and flat design.</p>
+        <h2>Some things to keep in mind</h2>
+        <p>This is a fun effect that's relatively easy to implement in just CSS,
+           but you can get fancier with a bit of additional JavaScript.
+           I like the way it looks, but it's a bit skeuomorphic and might not fit the current zeitgeist of web design.
+            It's also a bit computationally expensive. If you start overlaying glass elements on top of glass elements
+             and animate them, you'll see a noticable drop in framerate on some devices and your fans might turn on
+              from all the extra heat. Use with caution!</p>
       </div>
       <div class="content-card glass">
         <h2>Creating the background</h2>
@@ -56,29 +66,48 @@
            so it's best to add some abstract shapes or a gradient to the background.
         </p>
         <h3>Four color gradient background</h3>
+        <p>This background uses overlapping sibling elements contained within a parent to achieve a four color gradient effect.
+           As far as I know, there's no built-in way to do this with a single line of CSS so I achieve this with a gradient mask.
+        </p>
         <div id="four-color-gradient-background">
           <div id="background-gradient"></div>
           <div id="background-gradient-mask"></div>
         </div>
+        <p>The <code class="language-html">id="background-gradient-container"</code> element holds the two overlappping child elements which take
+           up the entire width and height of their parent. Both of the child elements are linear gradients, but the
+           <code class="language-html">id="background-gradient-mask"</code> element has a gradient mask applied to it
+            which allows the <code class="language-html">id="background-gradient"</code> to show through in the top half.
+        </p>
+        <p>Here's the HTML:</p>
         <div class="code-block">
           <pre><code class="language-html">
-&lt;div id="four-color-gradient-background"&gt;
+&lt;div id="background-gradient-container"&gt;
   &lt;div id="background-gradient"&gt;&lt;/div&gt;
   &lt;div id="background-gradient-mask"&gt;&lt;/div&gt;
 &lt;/div&gt;
           </code></pre>
         </div>
+        <p>The styling applied to <code class="language-css">#background-gradient-container</code> give us an element that is fixed
+         to the viewport so will not scroll, is positioned to the top-right corner of the viewport and takes up the full width and
+         height of the viewport.</p>
+         <p>The styling for the first child <code class="language-css">#background-gradient</code> element prevents it from affecting
+         its sibling's position. Additionally, the element takes up the entire width and height of its parent, the element is positioned
+         to the top-right corner of its parent and has a linear gradient going from left to right.</p>
+         <p>Lastly, the styling for the second child <code class="language-css">#background-gradient-mask</code> element does all the
+         same things as its sibling, but applies a linear gradients that uses different colors and applies a linear gradient mask
+         that runs from top (transparent) to bottom (opaque). This allows the first child element to show through at the top half of the
+         background gradually transition into the second child element which is visible in the bottom half of the background.</p>
+        <p>Here's the CSS:</p>
         <div class="code-block">
           <pre><code class="language-css">
-#four-color-gradient-background {
-  position: relative;
+#background-gradient-container {
+  position: fixed;
 
-  width: calc(100vw - 4rem);
-  height: calc(162vw - 4rem);
-  max-width: 500px;
-  max-height: 750px;
+  top: 0;
+  right: 0;
 
-  justify-self: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 #background-gradient {
@@ -102,9 +131,10 @@
   top: 0;
   right: 0;
 
+  background: linear-gradient(90deg, #8360c3,#2ebf91);
+
   mask-image: linear-gradient(180deg, transparent, black);
   -webkit-mask-image: linear-gradient(180deg, transparent, black);
-  background: linear-gradient(90deg, #8360c3,#2ebf91);
 }
             </code></pre>
           </div>
@@ -116,7 +146,7 @@
   <script src="{% static 'projects/glassmorphism/glassmorphism.js' %}?ver=001"></script>
 
   <!-- Prism -->
-  <script src="{% static 'projects/glassmorphism/prism.js' %}"></script>
+  <script src="{% static 'projects/glassmorphism/prism.js' %}?ver=001"></script>
 
 </body>
 </html>

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Glassmorphism Test</title>
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism_test.css' %}?ver=001">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
+
+    <!-- Default viewport scale -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  
+  <div id="background-gradient-container">
+    <div id="background-gradient"></div>
+    <div id="background-gradient-mask"></div>
+  </div>
+
+    <!-- JS -->
+  <script src="{% static 'projects/glassmorphism/glassmorphism_test.js' %}?ver=001"></script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=011">
+    <link rel="stylesheet" href="{% static 'profiles/hiroki.css' %}?ver=012">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -59,7 +59,7 @@
         <h4 class="project-subtitle">{{ project.project_subtitle }}</h4>
         <p class="project-description">{{ project.project_description }}</p>
         <button class="project-button" onClick="window.location.href='/projects/{{ project.url_stub }}'">
-          <div>read more</div>
+          <div class="button-text">read more</div>
           <div class="button-arrow"></div>
         </button>
         <div class="divider-line"></div>

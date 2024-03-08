@@ -53,6 +53,10 @@ button {
     font-family: 'Lato', sans-serif;
 }
 
+.button-text {
+    color: #000;
+}
+
 /* Glass Pane */
 .glass {
     background: rgba(255, 255, 255, 0.5);

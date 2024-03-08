@@ -219,3 +219,15 @@ a#obitan.profile-container {
         margin: 1rem 0;
     }
 }
+
+@media (max-height: 800px) {
+    /* Primary Container */
+    #primary-container {
+        align-content: start;
+    }
+
+    /* Content Container */
+    #content-container {
+        margin: 3rem 0;
+    }
+}
