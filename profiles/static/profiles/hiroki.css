@@ -208,12 +208,22 @@ button {
     align-items: center;
     grid-column-gap: .5rem;
     grid-auto-flow: column;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .project-button:hover {
     background-color: rgba(255, 255, 255, 0.4);
+}
 
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+@media (hover: none) {
+    .project-button:hover {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .project-button {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.4);
+    }
 }
 
 .button-arrow {

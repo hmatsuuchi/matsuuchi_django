@@ -70,12 +70,22 @@ p {
     grid-auto-flow: column;
     grid-column-gap: .5rem;
     align-items: center;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .back-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.4);
+}
 
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+@media (hover: none) {
+    .back-button:hover {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .back-button {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.4);
+    }
 }
 
 .back-button-arrow {

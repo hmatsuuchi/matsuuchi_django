@@ -4,7 +4,7 @@ from .models import Projects
 
 class GlassmorphismView(View):
     def get(self, request):
-        project = Projects.objects.get(url_stub='glassmorphism')
+        project = Projects.objects.get(id=3)
 
         context = {
             'project': project,
