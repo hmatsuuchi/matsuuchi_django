@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=016">
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=018">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -103,6 +103,8 @@
 #background-gradient-container {
   position: fixed;
 
+  overflow: hidden;
+
   top: 0;
   right: 0;
 
@@ -139,10 +141,125 @@
             </code></pre>
           </div>
           <h3>Creating background shapes</h3>
-          <p>You can add more visual interest to the background by adding a few shapes and applying the frosted glass effect to them.</p>
+          <p>
+            You can add more visual interest to the background by adding a few shapes and applying the frosted glass effect to them.
+             I suspect that this is where the biggest performance hit comes from. Having translucent elements overlappying translucent elements
+             seems to hit the processor pretty hard if you start animating them.
+          </p>
+          <div id="four-color-gradient-background">
+            <div id="background-gradient"></div>
+            <div id="background-gradient-mask"></div>
+            <div id="shape-1" class="glass"></div>
+            <div id="shape-2" class="glass"></div>
+          </div>
+          <p>You'll need to start by creating the frosted glass effect using this CSS:</p>
+          <div class="code-block">
+            <pre><code class="language-css">
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(.2rem);
+
+  box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.15);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+            </code></pre>
+          </div>
+          <p>Then you can add the shape elements to the HTML and style them. I'm going with simple circles in this example, but there's
+             no reason why you can't get more creative with the shapes.
+          </p>
+          <p>Here's the updates HTML that includes the background shapes:</p>
+          <div class="code-block">
+            <pre><code class="language-html">
+&lt;div id="background-gradient-container"&gt;
+  &lt;div id="background-gradient"&gt;&lt;/div&gt;
+  &lt;div id="background-gradient-mask"&gt;&lt;/div&gt;
+  &lt;div id="shape-1" class="glass"&gt;&lt;/div&gt;
+  &lt;div id="shape-2" class="glass"&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+          <p>And here's the complete CSS which was updated to include the glass effect and the two background circles:</p>
+          <div class="code-block">
+            <pre><code class="language-css">
+#background-gradient-container {
+  position: fixed;
+
+  overflow: hidden;
+
+  top: 0;
+  right: 0;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+#background-gradient {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  right: 0;
+
+  background: linear-gradient(90deg, #ee0979, #f5af19);
+}
+
+#background-gradient-mask {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  right: 0;
+
+  background: linear-gradient(90deg, #8360c3,#2ebf91);
+
+  mask-image: linear-gradient(180deg, transparent, black);
+  -webkit-mask-image: linear-gradient(180deg, transparent, black);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(.2rem);
+
+  box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.15);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#shape-1 {
+  position: absolute;
+
+  width: 50%;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+
+  bottom: -10%;
+  right: -10%;
+}
+
+#shape-2 {
+  position: absolute;
+
+  width: 75%;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+
+  top: -10%;
+  left: -20%;
+}
+              </code></pre>
+            </div>
       </div>
       <div class="content-card glass">
-        <h2>Creating panes to hold content</h2>
+        <h2>Creating glass panes for content</h2>
       </div>
     </div>
   </section>

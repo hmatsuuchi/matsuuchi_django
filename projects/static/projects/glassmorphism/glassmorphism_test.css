@@ -1,6 +1,8 @@
 #background-gradient-container {
     position: fixed;
 
+    overflow: hidden;
+
     top: 0;
     right: 0;
 
@@ -33,4 +35,38 @@
 
     mask-image: linear-gradient(180deg, transparent, black);
     -webkit-mask-image: linear-gradient(180deg, transparent, black);
+}
+
+#shape-1 {
+    position: absolute;
+
+    width: 50%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    bottom: -10%;
+    right: -10%;
+}
+
+#shape-2 {
+    position: absolute;
+
+    width: 75%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    top: -10%;
+    left: -20%;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(.2rem);
+
+    box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.15);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }

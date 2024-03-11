@@ -164,6 +164,8 @@ p {
 #four-color-gradient-background {
     position: relative;
 
+    overflow: hidden;
+
     margin: 2rem 0;
 
     width: calc(100vw - 4rem);
@@ -172,6 +174,31 @@ p {
     max-height: 750px;
 
     justify-self: center;
+}
+
+/* Content - Background Shapes */
+#shape-1 {
+    position: absolute;
+
+    width: 50%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    bottom: -10%;
+    right: -10%;
+}
+
+#shape-2 {
+    position: absolute;
+
+    width: 75%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    top: -10%;
+    left: -20%;
 }
 
 /* Background */

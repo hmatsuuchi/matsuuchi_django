@@ -14,10 +14,5 @@ class GlassmorphismView(View):
     
 class GlassmorphismTestView(View):
     def get(self, request):
-        project = Projects.objects.get(url_stub='glassmorphism')
 
-        context = {
-            'project': project,
-        }
-
-        return render(request, 'projects/glassmorphism/glassmorphism_test.html', context)
+        return render(request, 'projects/glassmorphism/glassmorphism_test.html')
