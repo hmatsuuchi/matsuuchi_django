@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=018">
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=019">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -143,44 +143,50 @@
           <h3>Creating background shapes</h3>
           <p>
             You can add more visual interest to the background by adding a few shapes and applying the frosted glass effect to them.
-             I suspect that this is where the biggest performance hit comes from. Having translucent elements overlappying translucent elements
-             seems to hit the processor pretty hard if you start animating them.
+          </p>
+          <p>
+             If you apply an animation to the background shapes, I suspect that this is where the biggest performance hit comes from. Having translucent elements overlapping translucent elements
+             seems to hit the processor pretty hard.
           </p>
           <div id="four-color-gradient-background">
             <div id="background-gradient"></div>
             <div id="background-gradient-mask"></div>
-            <div id="shape-1" class="glass"></div>
-            <div id="shape-2" class="glass"></div>
+            <div id="shape-1" class="glass-background"></div>
+            <div id="shape-2" class="glass-background"></div>
           </div>
-          <p>You'll need to start by creating the frosted glass effect using this CSS:</p>
+          <p>You'll need to start by creating the frosted glass effect. Setting <code class="language-css">background: rgba(255, 255, 255, 025);</code>
+           gives us an element with a translucent white background that allows the colors and elements behind it to show through. The <code class="language-css">box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.25);</code>
+            and <code class="language-css">border: 1px solid rgba(255, 255, 255, 0.2r);</code> give it a bit of depth and a bit of a border.
+          </p>
+          <p>
+            Here's the CSS for the frosted glass effect that you can apply to the background shapes:
+          </p>
           <div class="code-block">
             <pre><code class="language-css">
-.glass {
+.glass-background {
   background: rgba(255, 255, 255, 0.25);
 
-  backdrop-filter: blur(.2rem);
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.15);
 
-  box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.15);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
 }
             </code></pre>
           </div>
           <p>Then you can add the shape elements to the HTML and style them. I'm going with simple circles in this example, but there's
              no reason why you can't get more creative with the shapes.
           </p>
-          <p>Here's the updates HTML that includes the background shapes:</p>
+          <p>Here's the updated HTML that includes the background shapes:</p>
           <div class="code-block">
             <pre><code class="language-html">
 &lt;div id="background-gradient-container"&gt;
   &lt;div id="background-gradient"&gt;&lt;/div&gt;
   &lt;div id="background-gradient-mask"&gt;&lt;/div&gt;
-  &lt;div id="shape-1" class="glass"&gt;&lt;/div&gt;
-  &lt;div id="shape-2" class="glass"&gt;&lt;/div&gt;
+  &lt;div id="shape-1" class="glass-background"&gt;&lt;/div&gt;
+  &lt;div id="shape-2" class="glass-background"&gt;&lt;/div&gt;
 &lt;/div&gt;
             </code></pre>
           </div>
-          <p>And here's the complete CSS which was updated to include the glass effect and the two background circles:</p>
+          <p>And here's the updated CSS which includes the background glass effect and the two background circles:</p>
           <div class="code-block">
             <pre><code class="language-css">
 #background-gradient-container {
@@ -222,14 +228,14 @@
   -webkit-mask-image: linear-gradient(180deg, transparent, black);
 }
 
-.glass {
+.glass-background {
   background: rgba(255, 255, 255, 0.25);
 
   backdrop-filter: blur(.2rem);
 
-  box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.15);
 
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
 }
 
 #shape-1 {
@@ -260,6 +266,87 @@
       </div>
       <div class="content-card glass">
         <h2>Creating glass panes for content</h2>
+        <p>We're going to write a new CSS class that gives elements the frosted glass effect. This element is very similar to the <code class="language-css">.glass-background</code>
+           class, but it includes <code class="language-css">backdrop-filter: blur(0.2rem);</code> that blurs background elements which are visible behind the glass pane.
+        </p>
+        <p>Try scrolling the content:</p>
+          <div id="four-color-gradient-background">
+            <div id="background-gradient"></div>
+            <div id="background-gradient-mask"></div>
+            <div id="shape-1" class="glass-background"></div>
+            <div id="shape-2" class="glass-background"></div>
+            <div class="sample-content-container">
+              <div class="glass-element">
+                <h1>This is glassy!</h1>
+                <p>This is what text would look like on an element with the frosted glass effect. It's fairly readable and usually does pass
+                  the accessibility contrast ration test, but it's not always the most readable. It's best to use this effect sparingly
+                    and to test it with real users to make sure it's accessible to everyone.</p>
+                </p>
+              </div>
+              <div class="glass-element">
+                <h2>You may want to include images</h2>
+                <p>
+                  You can include images in the content panes. The frosted glass effect will not be applied to any content in the glass panes
+                   so it should all be fairy readable. 
+                </p>
+                <div class="sample-image"></div>
+              </div>
+              <div class="glass-element">
+                <h2>This is another glass element</h2>
+                <p>I'm going to put a few more of these in this sample window you can see what it looks like when you scroll translucent elements
+                  over the background.
+                </p>
+              </div>
+              <div class="glass-element">
+                <h2>...and here's another element</h2>
+                <p>This should be enough content to overflow the container and allow you to scroll. You can see that the background gradient
+                  is visible through the background shapes and that the background shapes are visible through the foreground panes.
+                </p>
+              </div>
+              <div class="glass-element">
+                <h2>I'll throw in one more for good measure</h2>
+                <p>Just in case the three elements aren't enough to overflow their container, I'll throw in one more for good measure.
+                  This should be enough to demonstrate the effect of scrolling translucent elements over the background.
+                </p>
+              </div>
+              <h4 class="copyright">Copyright Glassy Site 2024</h3>
+            </div>
+          </div>
+        <p>Here's the CSS for the glass pane effect for foreground elements:</p>
+        <div class="code-block">
+          <pre><code class="language-css">
+.glass-element {
+  background: rgba(255, 255, 255, 0.25);
+
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.15);
+
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(0.2rem);
+}
+          </code></pre>
+        </div>
+        <p>The elements that contain content are all held in the <code class="language-html">#content-container</code> element which fills the viewport.
+           Any overflow along the Y-axis is set to scroll which allows the content to scroll over a fixed background. How you want to design and layout the elements is entirely up to you, but here's an idea of what the HTML might look like:</p>
+        <div class="code-block">
+          <pre><code class="language-html">
+&lt;div id="background-gradient-container"&gt;
+  &lt;div id="background-gradient"&gt;&lt;/div&gt;
+  &lt;div id="background-gradient-mask"&gt;&lt;/div&gt;
+  &lt;div id="shape-1" class="glass-background"&gt;&lt;/div&gt;
+  &lt;div id="shape-2" class="glass-background"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="content-container"&gt;
+  &lt;div class="glass-element"&gt;&lt;/div&gt;
+  &lt;div class="glass-element"&gt;&lt;/div&gt;
+  &lt;div class="glass-element"&gt;&lt;/div&gt;
+&lt;/div&gt;
+          </code></pre>
+        </div>
+        <p>This is less of a tutorial and more of a collection of a few things I've learned while tinkering with this effect. The actual code used to
+           create the sample and this page is a bit more messy than what I've shown here, but I hope this gives you a good starting point if you want
+            to try this effect out for yourself.
+        </p>
       </div>
     </div>
   </section>

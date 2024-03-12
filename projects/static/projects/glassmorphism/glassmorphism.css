@@ -201,6 +201,60 @@ p {
     left: -20%;
 }
 
+.glass-background {
+    background: rgba(255, 255, 255, 0.25);
+
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.15);
+
+    border: 0.1rem solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-element {
+    background: rgba(255, 255, 255, 0.25);
+
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.15);
+
+    border: 0.1rem solid rgba(255, 255, 255, 0.2);
+
+    backdrop-filter: blur(0.2rem);
+}
+
+.glass-element {
+    padding: 1rem;
+
+    border-radius: 0.5rem;
+    margin: 1rem;
+
+    display: grid;
+}
+
+.sample-content-container {
+    height: 100%;
+
+    overflow-y: scroll;
+}
+
+.sample-image {
+    width: 50vw;
+    height: 50vw;
+
+    max-width: 350px;
+    max-height: 350px;
+
+    justify-self: center;
+
+    background-image: url("sample_image.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.copyright {
+    position: relative;
+
+    text-align: center;
+}
+
 /* Background */
 #background {
     position: fixed;
