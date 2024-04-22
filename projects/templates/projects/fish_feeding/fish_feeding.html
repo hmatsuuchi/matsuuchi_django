@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>熱帯魚の餌やり表</title>
+    <link rel="stylesheet" href="{% static 'projects/fish_feeding/fish_feeding.css' %}?ver=007">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'projects/fish_feeding/favicon.ico' %}"/>
+    <!-- Device/Browser Icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'projects/fish_feeding/icon_16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'projects/fish_feeding/icon_32x32.png' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'projects/fish_feeding/icon_57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'projects/fish_feeding/icon_72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'projects/fish_feeding/icon_114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'projects/fish_feeding/icon_144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'projects/fish_feeding/icon_152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'projects/fish_feeding/icon_180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'projects/fish_feeding/icon_192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'projects/fish_feeding/icon_512x512.png' %}">
+
+    <!-- Default viewport scale -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <section id="primary-container">
+    <h1>🐟 熱帯魚の餌やり表 🐟</h1>
+
+    <div class="input-container">
+      <h2>餌やり担当</h2>
+      <div class="fish-fed-select-container">
+        <button onclick="setFishFedPerson(event)" data-person-integer=0 class="no-person">無</button>
+        <button onclick="setFishFedPerson(event)" data-person-integer=1 class="dada">ダダ</button>
+        <button onclick="setFishFedPerson(event)" data-person-integer=2 class="obitan">オビたん</button>
+        <button onclick="setFishFedPerson(event)" data-person-integer=3 class="jba">ジェバー</button>
+        <button onclick="setFishFedPerson(event)" data-person-integer=9 class="unknown">不明</button>
+      </div>
+      <h2>水槽掃除担当</h2>
+      <div class="tank-cleaned-select-container">
+        <button onclick="setTankCleanedPerson(event)" data-person-integer=0 class="no-person">無</button>
+        <button onclick="setTankCleanedPerson(event)" data-person-integer=1 class="dada">ダダ</button>
+        <button onclick="setTankCleanedPerson(event)" data-person-integer=2 class="obitan">オビたん</button>
+        <button onclick="setTankCleanedPerson(event)" data-person-integer=3 class="jba">ジェバー</button>
+        <button onclick="setTankCleanedPerson(event)" data-person-integer=9 class="unknown">不明</button>
+      </div>
+
+    </div>
+
+    <table>
+      <tr>
+        <th>日付</td>
+        <th>餌やり担当</td>
+        <th>水槽掃除担当</td>
+      </tr>
+      <tr>
+        <td id="date-today"></td>
+
+          {% if all_records.0.date|date:'Y-m-d' == today %}
+            <td id="fish-fed-person-today" data-person-integer={% if all_records.0.date|date:'Y-m-d' == today %}{{ all_records.0.fish_fed_person }}{% else %}0{% endif %} class="{% if all_records.0.fish_fed_person == 0 %}no-person{% elif all_records.0.fish_fed_person == 1 %}dada{% elif all_records.0.fish_fed_person == 2 %}obitan{% elif all_records.0.fish_fed_person == 3 %}jba{% elif all_records.0.fish_fed_person == 9 %}unknown{% endif %}">
+              {{ all_records.0.get_fish_fed_person_display }}
+            </td>
+          {% else %}
+            <td id="fish-fed-person-today" data-person-integer=0 class="no-person">無</td>
+          {% endif %}
+
+          {% if all_records.0.date|date:'Y-m-d' == today %}
+            <td id="tank-cleaned-person-today" data-person-integer={% if all_records.0.date|date:'Y-m-d' == today %}{{ all_records.0.tank_cleaned_person }}{% else %}0{% endif %} class="{% if all_records.0.tank_cleaned_person == 0 %}no-person{% elif all_records.0.tank_cleaned_person == 1 %}dada{% elif all_records.0.tank_cleaned_person == 2 %}obitan{% elif all_records.0.tank_cleaned_person == 3 %}jba{% elif all_records.0.tank_cleaned_person == 9 %}unknown{% endif %}">
+              {{ all_records.0.get_tank_cleaned_person_display }}
+            </td>
+          {% else %}
+            <td id="tank-cleaned-person-today" data-person-integer=0 class="no-person">無</td>
+          {% endif %}
+      </tr>
+      {% for record in all_records %}
+        {% if record.date|date:'Y-m-d' != today %}
+          <tr>
+            <td>{{ record.date|date:"n月d日" }} ({{ record.day_of_week_japanese }})</td>
+            <td class="{% if record.fish_fed_person == 0 %}no-person{% elif record.fish_fed_person == 1 %}dada{% elif record.fish_fed_person == 2 %}obitan{% elif record.fish_fed_person == 3 %}jba{% elif record.fish_fed_person == 9 %}unknown{% endif %}">{{ record.get_fish_fed_person_display }}</td>
+            <td class="{% if record.tank_cleaned_person == 0 %}no-person{% elif record.tank_cleaned_person == 1 %}dada{% elif record.tank_cleaned_person == 2 %}obitan{% elif record.tank_cleaned_person == 3 %}jba{% elif record.tank_cleaned_person == 9 %}unknown{% endif %}">{{ record.get_tank_cleaned_person_display }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+  </section>
+
+    <!-- JS -->
+  <script src="{% static 'projects/fish_feeding/fish_feeding.js' %}?ver=003"></script>
+
+</body>
+</html>

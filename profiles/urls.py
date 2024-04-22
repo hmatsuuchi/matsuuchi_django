@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from .views import IndexView, HirokiView, ObitanView
+from .views import IndexView, HirokiView, ObitanView, JbaView
 
 urlpatterns = [
     # all profiles
@@ -8,6 +8,10 @@ urlpatterns = [
     # Hiroki
     path('hiroki/', HirokiView.as_view(), name='hiroki'),
     path('hiroki/projects/', include('projects.urls')),
-    # Olivia
-        path('obitan/', ObitanView.as_view(), name='obitan'),
+    # Obitan
+    path('obitan/', ObitanView.as_view(), name='obitan'),
+    path('obitan/projects/', include('projects.urls')),
+    # Jba
+    path('jba/', JbaView.as_view(), name='jba'),
+    path('jba/projects/', include('projects.urls')),
 ]

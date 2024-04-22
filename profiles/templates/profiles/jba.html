@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Obitan</title>
-    <link rel="stylesheet" href="{% static 'profiles/obitan.css' %}?ver=001">
+    <title>J_ba</title>
+    <link rel="stylesheet" href="{% static 'profiles/jba.css' %}?ver=001">
 </head>
 <body>
-    <h1>Obitan</h1>
+    <h1>J_ba</h1>
     {% for project in all_projects %}
-    <a href="{{ project.url_stub_secondary }}">
+    <a href="{{ project.url_stub }}">
         <div>{{ project.project_name }}{% if project.login_required %} *ログイン必要{% endif %}</div>
     </a>
     {% endfor %}

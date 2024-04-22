@@ -13,7 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+# uses admin login to authenticate users
+LOGIN_URL = "/admin/login/"
 
 ALLOWED_HOSTS = ['matsuuchi.com', 'www.matsuuchi.com', '127.0.0.1', '10.0.1.5']
 

@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Hiroki Matsuuchi</title>
-    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=021">
+    <link rel="stylesheet" href="{% static 'projects/glassmorphism/glassmorphism.css' %}?ver=022">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'profiles/site_icons/favicon.ico' %}"/>
@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Prism -->
-    <link href="{% static 'projects/glassmorphism/prism.css' %}?ver=001" rel="stylesheet" />
+    <link href="{% static 'projects/glassmorphism/prism.css' %}?ver=002" rel="stylesheet" />
 
 </head>
 <body>
@@ -51,12 +51,12 @@
         <div class="update-date">Last Updated: <wbr>{{ project.update_date|date:"Y-m-d" }}</div>
       </div>
       <div class="content-card glass">
-        <h2>Some things to keep in mind</h2>
-        <p>This is a fun effect that's relatively easy to implement in just CSS,
-           but you can get fancier with a bit of additional JavaScript.
+        <h2>It's a cool effect, but...</h2>
+        <p>This is a fun effect that's relatively easy to implement in just CSS
+           and you can get fancier with a bit of additional JavaScript.
            I like the way it looks, but it's a bit skeuomorphic and might not fit the current zeitgeist of web design.
             It's also a bit computationally expensive. If you start overlaying glass elements on top of glass elements
-             and animate them, you'll see a noticable drop in framerate on some devices and your fans might turn on
+             and animating them, you'll see a noticable drop in framerate on some devices and your fans might turn on
               from all the extra heat. Use with caution!</p>
       </div>
       <div class="content-card glass">
@@ -156,7 +156,7 @@
           </div>
           <p>You'll need to start by creating the frosted glass effect. Setting <code class="language-css">background: rgba(255, 255, 255, 025);</code>
            gives us an element with a translucent white background that allows the colors and elements behind it to show through. The <code class="language-css">box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.25);</code>
-            and <code class="language-css">border: 1px solid rgba(255, 255, 255, 0.2r);</code> give it a bit of depth and a bit of a border.
+            and <code class="language-css">border: 1px solid rgba(255, 255, 255, 0.2);</code> give it a bit of depth and a bit of a border.
           </p>
           <p>
             Here's the CSS for the frosted glass effect that you can apply to the background shapes:
@@ -278,7 +278,8 @@
             <div class="sample-content-container">
               <div class="glass-element">
                 <h1>This is glassy!</h1>
-                <p>This is what text would look like on an element with the frosted glass effect. It's fairly readable and usually does pass
+                <p>
+                  This is what text would look like on an element with the frosted glass effect. It's fairly readable and usually does pass
                   the accessibility contrast ration test, but it's not always the most readable. It's best to use this effect sparingly
                     and to test it with real users to make sure it's accessible to everyone.</p>
                 </p>
@@ -293,19 +294,22 @@
               </div>
               <div class="glass-element">
                 <h2>This is another glass element</h2>
-                <p>I'm going to put a few more of these in this sample window you can see what it looks like when you scroll translucent elements
+                <p>
+                  I'm going to put a few more of these in this sample window you can see what it looks like when you scroll translucent elements
                   over the background.
                 </p>
               </div>
               <div class="glass-element">
                 <h2>...and here's another element</h2>
-                <p>This should be enough content to overflow the container and allow you to scroll. You can see that the background gradient
+                <p>
+                  This should be enough content to overflow the container and allow you to scroll. You can see that the background gradient
                   is visible through the background shapes and that the background shapes are visible through the foreground panes.
                 </p>
               </div>
               <div class="glass-element">
                 <h2>I'll throw in one more for good measure</h2>
-                <p>Just in case the three elements aren't enough to overflow their container, I'll throw in one more for good measure.
+                <p>
+                  Just in case the three elements aren't enough to overflow their container, I'll throw in one more for good measure.
                   This should be enough to demonstrate the effect of scrolling translucent elements over the background.
                 </p>
               </div>
@@ -326,8 +330,10 @@
 }
           </code></pre>
         </div>
-        <p>The elements that contain content are all held in the <code class="language-html">#content-container</code> element which fills the viewport.
-           Any overflow along the Y-axis is set to scroll which allows the content to scroll over a fixed background. How you want to design and layout the elements is entirely up to you, but here's an idea of what the HTML might look like:</p>
+        <p>
+          The elements that contain content are all held in the <code class="language-html">#content-container</code> element which fills the viewport.
+           Any overflow along the Y-axis is set to scroll which allows the content to scroll over a fixed background. How you want to design and layout the elements is entirely up to you, but here's an idea of what the HTML might look like:
+          </p>
         <div class="code-block">
           <pre><code class="language-html">
 &lt;div id="background-gradient-container"&gt;
@@ -343,10 +349,189 @@
 &lt;/div&gt;
           </code></pre>
         </div>
-        <p>This is less of a tutorial and more of a collection of a few things I've learned while tinkering with this effect. The actual code used to
-           create the sample and this page is a bit more messy than what I've shown here, but I hope this gives you a good starting point if you want
-            to try this effect out for yourself.
+      </div>
+      <div class="content-card glass">
+        <h2>Animating background shapes</h2>
+        <p>
+          This is where you're going to start losing performance and killing mobile device batteries, but it does look pretty neat!
+       </p>
+       <h3>Fixed value animations</h3>
+       <p>
+          The simplest way to animate the background shapes is to use hardcoded values in a CSS keyframes animation. This produce a nice visual
+          effect, but the animations are deterministic and will always be the same each time the page is loaded.
         </p>
+        <p>
+          The background shape moves in a 100 second loop that repeats infinitely. There are ten keyframes that are set at 10% intervals which
+          means that the transition between keyframes is 10 seconds long.
+        </p>
+      <p>The CSS looks something like this:</p>
+      <div class="code-block">
+        <pre><code class="language-css">
+#shape-1 {
+  position: absolute;
+
+  width: 50%;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+
+  bottom: -10%;
+  right: -10%;
+
+  animation: shape-1-animation 100s infinite;
+}
+
+@keyframes shape-1-animation {
+  0% {
+      transform: translate(0, 0);
+  }
+  10% {
+      transform: translate(2rem, -1rem);
+  }
+  20% {
+      transform: translate(0rem, 2rem);
+  }
+  30% {
+      transform: translate(-2rem, 1rem);
+  }
+  40% {
+      transform: translate(0, -2rem);
+  }
+  50% {
+      transform: translate(2rem, 1rem);
+  }
+  60% {
+      transform: translate(3, 2rem);
+  }
+  70% {
+      transform: translate(-2rem, -1rem);
+  }
+  80% {
+      transform: translate(0, 0);
+  }
+  90% {
+      transform: translate(2rem, -3rem);
+  }
+  100% {
+      transform: translate(0, 0);
+  }
+}
+          </code></pre>
+        </div>
+        <h3>Randomized animations</h3>
+        <p>
+          You can use a bit of JavaScript to randomize the animations on every page load. This will give you a bit of variety and make the
+          page a bit more visually interesting.
+        </p>
+        <p>
+          The code <code class="language-javascript">const animationDuration = 100000 + Math.random() * 10000;</code> sets the base duration to
+          100,000 milliseconds or 100 seconds and then adds a random value between 0 and 10,000 milliseconds or 10 seconds. This prevents
+           multiple background shapes from moving in sync.
+        </p>
+        <p>
+          The amount the element will move is set by the movement factor <code class="language-javascript">const movementFactor = 5;</code>
+         and uses <code class="language-css">rem</code> units in my example.
+        </p>
+        <p>
+          The <code class="language-javascript">randomVal</code> generator function returns a random value between -5 and 5. These values are then
+          used to translate the background shapes in the <code class="language-javascript">shapeOneMotion</code> array.
+        </p>
+        <p>
+          The duration of the animation and the iterations are set and then the animtion array and timing properties are used to apply
+          the animation to the shape element.
+        </p>
+        <p>
+          If you want to animate an arbitrary number of background shapes using this code, you'll need to modify the code a bit,
+          wrap the animation code in a function and call it for each shape element.
+        </p>
+        <p>
+          Here's the JavaScript code that animates the background shapes:
+        </p>
+        <div class="code-block">
+          <pre><code class="language-javascript">
+// animation duration
+const animationDuration = 100000 + Math.random() * 10000;
+// defines how much the shape can move
+const movementFactor = 5;
+
+// random value generator
+const randomVal = () => {
+  let output = Math.random() * movementFactor;
+
+  if (Math.random() < 0.5) {
+    output *= -1;
+  }
+
+  return Math.round(output);
+};
+
+// shape 1 element
+const shapeOne = document.querySelector("#shape-1");
+
+const shapeOneMotion = [
+  {
+    transform: "translate(0, 0)",
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: `translate(${randomVal()}rem, ${randomVal()}rem)`,
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+  {
+    transform: "translate(0, 0)",
+    easing: "cubic-bezier(0.42, 0.0, 0.58, 1.0)",
+  },
+];
+
+const shapeOneTiming = {
+  duration: animationDuration,
+  iterations: Infinity,
+};
+
+if (shapeOne) {
+  shapeOne.animate(shapeOneMotion, shapeOneTiming);
+}
+          </code></pre>
+        </div>
+      </div>
+      <div class="content-card glass">
+        <h2>Final thoughts</h2>
+        <p>This is less of a tutorial and more of a collection of a few things I've learned while tinkering with this effect. The actual code used to
+          create the samples and this page is a bit more messy than what I've shown here, but I hope this gives you a good starting point if you want
+           to try this effect out for yourself.
+       </p>
       </div>
     </div>
   </section>

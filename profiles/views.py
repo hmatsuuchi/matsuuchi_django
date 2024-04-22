@@ -20,4 +20,20 @@ class HirokiView(View):
     
 class ObitanView(View):
     def get(self, request):
-        return render(request, 'profiles/obitan.html')
+        all_projects = Projects.objects.all().filter(user=4)
+
+        context = {
+            'all_projects': all_projects
+        }
+
+        return render(request, 'profiles/obitan.html', context)
+    
+class JbaView(View):
+    def get(self, request):
+        all_projects = Projects.objects.all().filter(user=3)
+
+        context = {
+            'all_projects': all_projects
+        }
+
+        return render(request, 'profiles/jba.html', context)
